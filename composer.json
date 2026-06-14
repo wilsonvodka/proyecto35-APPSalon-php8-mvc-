@@ -1,0 +1,19 @@
+{
+    "name": "wilson/proyecto35",
+    "description": "proyecto php8, mvc, sass, gulp",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\": "./",
+            "Controllers\\": "./controllers",
+            "Model\\": "./models"
+        }
+    },
+    "authors": [
+        {
+            "name": "wilson alexander",
+            "email": "wilgm0kdev@gmail.com"
+        }
+    ],
+    "require": {}
+}
