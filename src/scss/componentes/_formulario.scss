@@ -1,5 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
+@use "sass:color";
 
 .formulario {
     margin-top: 5rem;
@@ -17,5 +18,10 @@
         border: none;
         padding: calc(v.$separacion/4);
         border-radius: 1rem;
+        &:disabled{
+            background-color: color.scale(v.$negro, $lightness: 50%);
+            color: v.$blanco;
+            cursor: not-allowed;
+        }
     }
 }
