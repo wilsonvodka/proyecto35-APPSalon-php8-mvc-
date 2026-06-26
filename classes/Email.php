@@ -19,15 +19,14 @@ class Email
     }
     public function enviarConfirmacion()
     {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-        $dotenv->load();
+       
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = $_ENV['USERNAME'];
-        $mail->Password = $_ENV['PASSWORD'];
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
 
 
         $mail->setFrom('cuentas@appsalon.com');
@@ -39,7 +38,7 @@ class Email
 
         $contenido = "<html>";
         $contenido .= "<p><strog>Hola " . $this->nombre . "</strog> Has creado tu cuenta en Appsalon solo debes confirmarla presionando el siguiente enlace</p>";
-        $contenido .= "<p>Presiona aqui: <a href='http://localhost:3000/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a></p>";
+        $contenido .= "<p>Presiona aqui: <a href='". $_ENV['APP_URL'] ."/confirmar-cuenta?token=" . $this->token . "'>Confirmar Cuenta</a></p>";
         $contenido .= "<p>si tu no solicitaste esta cuenta puedes ignorar el mensaje</p>";
         $contenido .= "</html>";
 
@@ -52,15 +51,13 @@ class Email
     }
     public function enviarInstrucciones()
     {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-        $dotenv->load();
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
-        $mail->Port = 2525;
-        $mail->Username = $_ENV['USERNAME'];
-        $mail->Password = $_ENV['PASSWORD'];
+        $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->Username = $_ENV['EMAIL_USER'];
+        $mail->Password = $_ENV['EMAIL_PASS'];
 
 
         $mail->setFrom('cuentas@appsalon.com');
@@ -74,7 +71,7 @@ class Email
 
         $contenido = "<html>";
         $contenido .= "<p><strog>Hola " . $this->nombre . "</strog> Has solicitado restablecer tu password sigue el siguiente enlace para hacerlo</p>";
-        $contenido .= "<p>Presiona aqui: <a href='http://localhost:3000/recuperar?token=" . $this->token . "'>Restablecer password</a></p>";
+        $contenido .= "<p>Presiona aqui: <a href='". $_ENV['APP_URL'] ."/recuperar?token=" . $this->token . "'>Restablecer password</a></p>";
         $contenido .= "<p>si tu no solicitaste esta cuenta puedes ignorar el mensaje</p>";
         $contenido .= "</html>";
 
